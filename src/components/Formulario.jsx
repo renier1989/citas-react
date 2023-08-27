@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Error from "./Error";
 
-function Formulario({ pacientes, setPacientes }) {
+function Formulario({ pacientes, setPacientes, paciente }) {
   const [nombre_mascota, setNombreMascota] = useState("");
   const [nombre_propietario, setNombrePropietario] = useState("");
   const [email_propietario, setEmailPropietario] = useState("");
@@ -15,6 +15,11 @@ function Formulario({ pacientes, setPacientes }) {
     const fecha = Date.now().toString();
     return random + fecha;
   };
+
+  useEffect(()=>{
+    console.log(paciente);
+  },[paciente])
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
