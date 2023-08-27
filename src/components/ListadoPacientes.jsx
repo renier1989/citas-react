@@ -12,7 +12,7 @@ const ListadoPacientes = ({pacientes}) => {
       <div className="m-0 md:h-screen overflow-y-scroll">
 
 
-        {pacientes.map((paciente, index) => (<Paciente paciente={paciente} key={index} />) )}
+        {pacientes.map(paciente=> (<Paciente paciente={paciente} key={paciente.id} />) )}
         
         
       </div>

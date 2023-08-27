@@ -10,8 +10,11 @@ function Formulario({ pacientes, setPacientes }) {
   const [fecha_alta, setFechaAlta] = useState("");
   const [sintomas, setSintomas] = useState("");
   const [error, setError] = useState(false);
-  // console.log(nombre_mascota, nombre_propietario);
-
+  const generarId = () => {
+    const random = Math.random().toString(36).substr(2);
+    const fecha = Date.now().toString();
+    return random + fecha;
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -34,6 +37,7 @@ function Formulario({ pacientes, setPacientes }) {
       email_propietario,
       fecha_alta,
       sintomas,
+      id: generarId(),
     };
 
     setPacientes([...pacientes, objetoPaciente]);
