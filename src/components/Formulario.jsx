@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
+import Error from "./Error";
 
 function Formulario({ pacientes, setPacientes }) {
   const [nombre_mascota, setNombreMascota] = useState("");
@@ -61,9 +62,7 @@ function Formulario({ pacientes, setPacientes }) {
         className="bg-white shadow-md rounded-lg py-10 px-5 mb-4"
       >
         {error && (
-          <div className="bg-red-800 text-white text-center p-3 uppercase font-bold mb-3 rounded-md">
-            <p>Todos los campos son obligatorios</p>
-          </div>
+          <Error mensaje='Todos los campos con requeridos' />
         )}
         <div>
           <label
