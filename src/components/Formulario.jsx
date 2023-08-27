@@ -38,11 +38,11 @@ function Formulario({ pacientes, setPacientes }) {
 
     setPacientes([...pacientes, objetoPaciente]);
 
-    setNombreMascota('');
-    setNombrePropietario('');
-    setEmailPropietario('');
-    setFechaAlta('');
-    setSintomas('');
+    setNombreMascota("");
+    setNombrePropietario("");
+    setEmailPropietario("");
+    setFechaAlta("");
+    setSintomas("");
 
     // console.log("se envia el formulario");
     // console.log(pacientes);
@@ -62,7 +62,9 @@ function Formulario({ pacientes, setPacientes }) {
         className="bg-white shadow-md rounded-lg py-10 px-5 mb-4"
       >
         {error && (
-          <Error mensaje='Todos los campos con requeridos' />
+          <Error>
+            <p>Todos los campos con requeridos</p>
+          </Error>
         )}
         <div>
           <label
