@@ -1,14 +1,24 @@
+/* eslint-disable no-unused-vars */
+import { useState } from "react";
+
 function Formulario() {
+  const [nombre, setNombre] =useState('')
+  console.log(nombre);
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    console.log('se envia el formulario');
+  }
+
   return (
     <div className="md:w-1/2 lg:w-2/5">
       <h2 className="font-black text-3xl text-center">Información de Seguimiento</h2>
       <p className="text-lg mt-2 mb-6 text-center">
         Añade Pacientes y {""} <span className="text-indigo-600 font-bold"> Adminitralos</span>
       </p>
-      <form className="bg-white shadow-md rounded-lg py-10 px-5 mb-4">
+      <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg py-10 px-5 mb-4">
         <div>
           <label htmlFor="nombre_mascota" className="block text-gray-700 uppercase font-bold">Mascota</label>
-          <input id="nombre_mascota" type="text" placeholder="Nombre de la Mascota" className=" border-2 w-full p-2 mt-2 placeholder:text-gray-600  rounded-md"/>
+          <input value={nombre} onChange={(e)=>{setNombre(e.target.value)}} id="nombre_mascota" type="text" placeholder="Nombre de la Mascota" className=" border-2 w-full p-2 mt-2 placeholder:text-gray-600  rounded-md"/>
         </div>
         <div className="mt-5">
           <label htmlFor="nombre_propietario" className="block text-gray-700 uppercase font-bold">Porpietario</label>
