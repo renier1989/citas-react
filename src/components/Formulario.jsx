@@ -1,14 +1,15 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 
-function Formulario() {
+function Formulario({ pacientes, setPacientes }) {
   const [nombre_mascota, setNombreMascota] = useState("");
   const [nombre_propietario, setNombrePropietario] = useState("");
   const [email_propietario, setEmailPropietario] = useState("");
   const [fecha_alta, setFechaAlta] = useState("");
   const [sintomas, setSintomas] = useState("");
   const [error, setError] = useState(false);
-  console.log(nombre_mascota, nombre_propietario);
+  // console.log(nombre_mascota, nombre_propietario);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,8 +27,24 @@ function Formulario() {
       return;
     }
     setError(false);
+    const objetoPaciente = {
+      nombre_mascota,
+      nombre_propietario,
+      email_propietario,
+      fecha_alta,
+      sintomas,
+    };
 
-    console.log("se envia el formulario");
+    setPacientes([...pacientes, objetoPaciente]);
+
+    setNombreMascota('');
+    setNombrePropietario('');
+    setEmailPropietario('');
+    setFechaAlta('');
+    setSintomas('');
+
+    // console.log("se envia el formulario");
+    // console.log(pacientes);
   };
 
   return (
