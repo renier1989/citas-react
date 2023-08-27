@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Paciente from "./Paciente";
 
-const ListadoPacientes = ({ pacientes }) => {
+const ListadoPacientes = ({ pacientes , setPaciente }) => {
   const renderNHP = () => {
     return (
       <>
@@ -36,7 +36,7 @@ const ListadoPacientes = ({ pacientes }) => {
       {renderElement()}
       <div className="m-0 md:h-screen overflow-y-scroll">
         {pacientes.map((paciente) => (
-          <Paciente paciente={paciente} key={paciente.id} />
+          <Paciente paciente={paciente} setPaciente={setPaciente} key={paciente.id} />
         ))}
       </div>
     </div>
