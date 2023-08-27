@@ -2,7 +2,7 @@ function Formulario() {
   return (
     <div className="md:w-1/2 lg:w-2/5">
       <h2 className="font-black text-3xl text-center">Información de Seguimiento</h2>
-      <p className="text-lg mt-5 mb-10 text-center">
+      <p className="text-lg mt-2 mb-6 text-center">
         Añade Pacientes y {""} <span className="text-indigo-600 font-bold"> Adminitralos</span>
       </p>
       <form className="bg-white shadow-md rounded-lg py-10 px-5 mb-4">
