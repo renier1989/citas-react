@@ -97,7 +97,7 @@ function Formulario({ pacientes, setPacientes, paciente, setPaciente }) {
       >
         {error && (
           <Error>
-            <p>Todos los campos con requeridos</p>
+            <p>Todos los campos son requeridos</p>
           </Error>
         )}
         <div>
