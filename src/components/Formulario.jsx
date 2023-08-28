@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Error from "./Error";
 
-function Formulario({ pacientes, setPacientes, paciente }) {
+function Formulario({ pacientes, setPacientes, paciente, setPaciente }) {
   const [nombre_mascota, setNombreMascota] = useState("");
   const [nombre_propietario, setNombrePropietario] = useState("");
   const [email_propietario, setEmailPropietario] = useState("");
@@ -16,9 +16,15 @@ function Formulario({ pacientes, setPacientes, paciente }) {
     return random + fecha;
   };
 
-  useEffect(()=>{
-    console.log(paciente);
-  },[paciente])
+  useEffect(() => {
+    if (Object.keys(paciente).length > 0) {
+      setNombreMascota(paciente.nombre_mascota);
+      setNombrePropietario(paciente.nombre_propietario);
+      setEmailPropietario(paciente.email_propietario);
+      setFechaAlta(paciente.fecha_alta);
+      setSintomas(paciente.sintomas);
+    }
+  }, [paciente]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,22 +42,41 @@ function Formulario({ pacientes, setPacientes, paciente }) {
       return;
     }
     setError(false);
+
     const objetoPaciente = {
       nombre_mascota,
       nombre_propietario,
       email_propietario,
       fecha_alta,
       sintomas,
-      id: generarId(),
     };
 
-    setPacientes([...pacientes, objetoPaciente]);
+    if (paciente.id) {
+      // esta parte es para editar
+      objetoPaciente.id = paciente.id; // aqui le asigno el id que ya venia , es el paciente al que le di editar.
+
+      // aqui busco dentro de la lista de los pacientes que ya fuera registrados, cual coincide con el id del que quiero editar
+      // cuando coincide el id , con el paciente que estoy editando, entonces lo que va a hacer es sustituir lo por el objetoPaciente que es el que ya tiene los datros modificados.
+      // para el caso que hayan mas pacientes y esto no van a coincider con el id del paciente que estoy editando, estos los va a dejar como estan.
+      const pacientesActualizados = pacientes.map((pacienteState) =>
+        pacienteState.id === paciente.id ? objetoPaciente : pacienteState
+      );
+
+      setPacientes(pacientesActualizados);
+
+    } else {
+      // esta parte es para agregar
+
+      objetoPaciente.id = generarId(); // aqui asigno un id al objeto
+      setPacientes([...pacientes, objetoPaciente]);
+    }
 
     setNombreMascota("");
     setNombrePropietario("");
     setEmailPropietario("");
     setFechaAlta("");
     setSintomas("");
+    setPaciente({});
 
     // console.log("se envia el formulario");
     // console.log(pacientes);
@@ -158,7 +183,7 @@ function Formulario({ pacientes, setPacientes, paciente }) {
           <input
             type="submit"
             className="bg-indigo-600 text-white p-3 w-full uppercase font-bold cursor-pointer rounded-md"
-            value="Agregar Paciente"
+            value={paciente.id ? `Editar Paciente` : `Agregar Paciente`}
           />
         </div>
       </form>

@@ -1,11 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from "react";
+
 import Paciente from "./Paciente";
 
 const ListadoPacientes = ({ pacientes , setPaciente }) => {
-  useEffect(()=>{
-    console.log('Nuevo paciente');
-  },[pacientes])
+
   const renderNHP = () => {
     return (
       <>
