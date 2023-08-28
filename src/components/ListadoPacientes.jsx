@@ -2,7 +2,7 @@
 
 import Paciente from "./Paciente";
 
-const ListadoPacientes = ({ pacientes , setPaciente }) => {
+const ListadoPacientes = ({ pacientes , setPaciente ,eliminar }) => {
 
   const renderNHP = () => {
     return (
@@ -38,7 +38,7 @@ const ListadoPacientes = ({ pacientes , setPaciente }) => {
       {renderElement()}
       <div className="m-0 md:h-screen overflow-y-scroll">
         {pacientes.map((paciente) => (
-          <Paciente paciente={paciente} setPaciente={setPaciente} key={paciente.id} />
+          <Paciente paciente={paciente} setPaciente={setPaciente} eliminar={eliminar} key={paciente.id} />
         ))}
       </div>
     </div>
